@@ -4,30 +4,36 @@
 # by xSyNcr0
 
 print("APG v1.0 by xSyNcr0")
-words = input("words: ")
-numbers = input("numbers: ")
-date = input("date: ")
-schar = input("special chars: ")
+words = input("words: ").split(",")
+numbers = input("numbers: ").split(",")
+date = input("date: ").split(",")
+schar = input("special chars: ").split(",")
 iterations = input("iteration: ")
 
 
-base_wordlist = []
-passwords = []
+base_wordlist = set()
+passwords = set()
 
 
 def toBaseWL(data):
-    if type(data) is list:
+    if isinstance(data, set):
         for element in data:
-            base_wordlist.append(element)
+            base_wordlist.add(element)
+    elif isinstance(data, list):
+        for element in data:
+            passwords.add(element)
     else:
-        base_wordlist.append(data)
+        base_wordlist.add(data)
 
 def toPsw(data):
-    if type(data) is list:
+    if isinstance(data, set):
         for element in data:
-            passwords.append(element)
+            passwords.add(element)
+    elif isinstance(data, list):
+        for element in data:
+            passwords.add(element)
     else:
-        passwords.append(data)
+        passwords.add(data)
 
 def reverse(text):
     if isinstance(text, int):
@@ -35,34 +41,55 @@ def reverse(text):
     return text[::-1]
 
 def decodeDate(input):
-    base = []
+    base = set()
     for element in input:
-        base.append(strRemover(input, '-'))
+        base.add(strRemover(input, '-'))
     return base
 
 def strRemover(text, char):
     return text.replace(char, "")
 
 def toUpper(input):
-    base = []
+    base = set()
     for element in input:
-        tmp = []
-        tmp.append(element)
-
-        for i in range(len(element)):
-            number = i + 1
-            for char in 
+        tmp = generateUpperCombinations(element)
+        for x in tmp:
+            base.add(x)
+    return base
 
 
 def CharToSpecialChar(input):
-    base = []
+    base = set()
     for element in input:
-        base.append(element)
+        base.add(element)
+
+def generateUpperCombinations(input_string):
+    input_string = input_string.lower()
+    result = set()
+
+    for i in range(2**len(input_string)):
+        modified_string = list(input_string)
+        for j in range(len(input_string)):
+            if (i >> j) & 1:
+                modified_string[j] = modified_string[j].upper()
+        result.add(''.join(modified_string))
+    return result
+
+def save():
+    content = sorted(base_wordlist)
+    file = open("wordlist.txt", "w")
+    for row in content:
+        file.write(row + '\n')
+    file.close()
 
 def main():
-    toBaseWL(numbers)
-    for iteration in iterations:
-        print(iteration)
+    toBaseWL(words)
+    toBaseWL(toUpper(words))
+    print(len(base_wordlist))
+    print(base_wordlist)
+    passwords = base_wordlist
+    save()
+    
 
 
 main()
