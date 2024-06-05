@@ -2,7 +2,8 @@
 
 ## Overview
 
-APG (Advanced Password Generator) is a robust and flexible password generation tool designed to create strong, customizable passwords based on user input. It offers various levels of obfuscation and customization to ensure generated passwords meet specific security requirements.
+APG (Advanced Password Generator) is a flexible password generation tool designed to create strong, customizable passwords based on user input. 
+It offers various levels of obfuscation and customization to ensure generated passwords meet specific security requirements.
 
 ## Features
 
@@ -16,8 +17,8 @@ APG (Advanced Password Generator) is a robust and flexible password generation t
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/APG.git
-    cd APG
+    git clone https://github.com/xSyNcr0/apg
+    cd apg
     ```
 2. Install the required dependencies:
     ```sh
@@ -29,7 +30,8 @@ APG (Advanced Password Generator) is a robust and flexible password generation t
 Run the main script to start the password generator:
 
 ```sh
-python main.py
+python apg.py
+python3 apg.py
 ```
 
 You will be prompted to input various parameters such as words, numbers, dates, special characters, and password configuration options.
@@ -50,18 +52,10 @@ Example Inputs
     Obfuscation Iterations: 1 to 99
     Year Range: 2016, 2021
 
-Example Output
-
 Generated passwords will be saved in wordlist.txt file in the current directory.
+
 Disclaimer
-
 The developer assumes no liability and is not responsible for any issues or damages caused by using APG. Use at your own risk.
-License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
 Author
-
 Created by xSyNcr0
-
-
-Feel free to adjust the content and formatting to better match your preferences or project specifics.
